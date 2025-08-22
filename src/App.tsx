@@ -8,11 +8,13 @@ import { useTodos } from "./hooks/useTodo"
 
 function App() {
   const [inputValue, setInputValue] = useState("")
+  const [description, setDescription] = useState("")
   const { todos, addTodo, toggleTodo, deleteTodo, completedCount, totalCount } = useTodos()
 
   const handleAddTodo = () => {
-    addTodo(inputValue)
+    addTodo(inputValue, description)
     setInputValue("")
+    setDescription("")
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -32,7 +34,7 @@ function App() {
             )}
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-2">
               <Input
                 placeholder="Add a new todo..."
                 value={inputValue}
@@ -40,9 +42,17 @@ function App() {
                 onKeyPress={handleKeyPress}
                 className="flex-1"
               />
-              <Button onClick={handleAddTodo} size="icon">
-                <Plus className="h-4 w-4" />
-              </Button>
+              <textarea
+                placeholder="Description..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="flex-1 rounded-md border px-3 py-2 text-sm resize-vertical min-h-[48px]"
+              />
+              <div className="flex justify-end">
+                <Button onClick={handleAddTodo} size="icon">
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
             </div>
 
             <div className="space-y-2">

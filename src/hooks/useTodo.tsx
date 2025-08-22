@@ -15,9 +15,9 @@ export function useTodos() {
     todoService.getTodos().then(setTodos).catch(() => setTodos([]))
   }, [])
 
-  const addTodo = async (text: string) => {
-    if (text.trim() === "") return
-    const newTodo = await todoService.addTodo(text.trim(), 'aa')
+  const addTodo = async (title: string, description: string) => {
+    if (title.trim() === "" || description.trim() === "") return
+    const newTodo = await todoService.addTodo(title.trim(), description.trim())
     setTodos((prev) => [...prev, newTodo])
   }
 
