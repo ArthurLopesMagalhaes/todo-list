@@ -17,10 +17,6 @@ function App() {
     setDescription("")
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") handleAddTodo()
-  }
-
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-md mx-auto">
@@ -39,7 +35,6 @@ function App() {
                 placeholder="Add a new todo..."
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={handleKeyPress}
                 className="flex-1"
               />
               <textarea
